@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <title>Strive Calculator</title>
+
+        <style>
+            body{
+                background: #181818;
+                color: white;
+            }
+
+            #calculator{
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            table {
+                border: 2px solid white;
+            }
+
+            input[type=button]{
+                width:100px;
+                height: 100px;
+                font-size: 30px;
+            }
+
+            #result {
+                font-size: 60px;
+                text-align: right;
+                width: 100%;
+                max-width: 420px;
+            }
+            
+            .numericButton{
+                color: #ef3d59;
+                background: white;
+                border: 0px;
+            }
+
+            .specialFunction{
+                background: #ef3d59;
+                color: white;
+                border: 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="calculator">
+            <table>
+                <tr> <!-- FIRST ROW-->
+                    <td colspan="4">  <!-- ONLY ONE CELL, TAKE 4 COLUMNS-->
+                        <input type="number" value="0" id="result"/>
+                    </td>
+                </tr>
+                <tr> <!-- SECOND ROW => 7 8 9 + -->
+                    <td><input type="button" value="7" class="numericButton" /></td>
+                    <td><input type="button" value="8" class="numericButton" /></td>
+                    <td><input type="button" value="9" class="numericButton" /></td>
+                    <td><input type="button" value="+" class="specialFunction" /></td>
+                </tr>
+                <tr> <!-- THIRD ROW => 4 5 6 - -->
+                    <td><input type="button" value="4" class="numericButton" /></td>
+                    <td><input type="button" value="5" class="numericButton" /></td>
+                    <td><input type="button" value="6" class="numericButton" /></td>
+                    <td><input type="button" value="-" class="specialFunction" /></td>
+                </tr>
+                <tr> <!-- FORTH ROW => 1 2 3 * -->
+                    <td><input type="button" value="1" class="numericButton" /></td>
+                    <td><input type="button" value="2" class="numericButton" /></td>
+                    <td><input type="button" value="3" class="numericButton" /></td>
+                    <td><input type="button" value="*" class="specialFunction" /></td>
+                </tr>
+                <tr> <!-- FIFTH ROW => C 0 = / -->
+                    <td><input type="button" value="C" class="specialFunction" /></td>
+                    <td><input type="button" value="0" class="numericButton" /></td>
+                    <td><input type="button" value="=" class="specialFunction" /></td>
+                    <td><input type="button" value="/" class="specialFunction" /></td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
