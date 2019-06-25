@@ -83,9 +83,14 @@
         <script>
             window.onload = function() {
                 //var numericButtons = document.getElementsByClassName("numericButton");
-                var numericButtons = document.querySelectorAll(".numericButton");
-                for(var i = 0; i< numericButtons.length; i++){
-                    numericButtons[i].addEventListener("click", numberPressed);
+                var numericButtons = document.querySelectorAll(".numericButton"); //gets all the numeric buttons
+                for(var i = 0; i< numericButtons.length; i++){ //cycle through the numeric buttons
+                    numericButtons[i].addEventListener("click", numberPressed); //add event handler for click event
+                }
+
+                var specialButtons = document.querySelectorAll(".specialFunction");
+                for(var i = 0; i < specialButtons.length; i++){
+                    specialButtons[i].addEventListener("click", specialPressed);
                 }
             };
 
@@ -98,6 +103,43 @@
                     result.value += event.target.value;
                 }
             };
+
+            var previousResult = 0; //previous result on the calculator or first operator
+            var selectedOperation = ""; //selected operation before the "=" sign
+
+            function specialPressed(event){
+                var buttonPressed = event.target;
+                var specialFunction = buttonPressed.value; // we're getting the current operation
+                var actualValue = parseInt(document.getElementById("result").value); //we're getting the actual value
+
+                switch (specialFunction) {
+                    case "=": //The users wants the result
+                        switch(selectedOperation){ 
+                            case "+":
+                                previousResult += actualValue;
+                                break;
+                            case "-":
+                                previousResult -= actualValue;
+                                break;
+                            case "*":
+                                previousResult *= actualValue;
+                                break;
+                            case "/":
+                                previousResult /= actualValue;
+                                break;
+                        }
+                        document.getElementById("result").value = previousResult;
+                        break;
+                    case "C": // The user wants to reset
+                        document.getElementById("result").value = "0"; //reset the actual value
+                        previousResult = 0; //reset the previous result
+                        break;
+                    default: //The user is performing an operation
+                        previousResult = parseInt(document.getElementById("result").value); //store the actual value
+                        document.getElementById("result").value = "0"; //reset the actual value
+                        selectedOperation = specialFunction; //save the selected operation
+                }
+            }
         </script>
     </body>
 </html>
