@@ -79,5 +79,25 @@
                 </tr>
             </table>
         </div>
+
+        <script>
+            window.onload = function() {
+                //var numericButtons = document.getElementsByClassName("numericButton");
+                var numericButtons = document.querySelectorAll(".numericButton");
+                for(var i = 0; i< numericButtons.length; i++){
+                    numericButtons[i].addEventListener("click", numberPressed);
+                }
+            };
+
+            function numberPressed(event){
+                var result = document.getElementById("result");
+                if (result.value === "0"){
+                    result.value = event.target.value;
+                }
+                else {
+                    result.value += event.target.value;
+                }
+            };
+        </script>
     </body>
 </html>
