@@ -82,33 +82,34 @@
 
         <script>
             window.onload = function() {
-                //var numericButtons = document.getElementsByClassName("numericButton");
                 var numericButtons = document.querySelectorAll(".numericButton"); //gets all the numeric buttons
                 for(var i = 0; i< numericButtons.length; i++){ //cycle through the numeric buttons
                     numericButtons[i].addEventListener("click", numberPressed); //add event handler for click event
                 }
 
-                var specialButtons = document.querySelectorAll(".specialFunction");
-                for(var i = 0; i < specialButtons.length; i++){
-                    specialButtons[i].addEventListener("click", specialPressed);
+                var specialButtons = document.querySelectorAll(".specialFunction"); //gets all the specialFunction buttons
+                for(var i = 0; i < specialButtons.length; i++){ //cycle through the special buttons
+                    specialButtons[i].addEventListener("click", specialPressed); //add event listener for click event
                 }
             };
 
+            //eventListener for clicks on a "numeric button"
             function numberPressed(event){
-                var result = document.getElementById("result");
-                if (result.value === "0"){
-                    result.value = event.target.value;
+                var result = document.getElementById("result"); //get a reference to result <input
+                if (result.value === "0"){ //if the value is 0
+                    result.value = event.target.value; //we replace it with the current number (to avoid having 09 etc)
                 }
                 else {
-                    result.value += event.target.value;
+                    result.value += event.target.value; //else just concatenate to the currenct value. "10" + "9" = "109"
                 }
             };
 
             var previousResult = 0; //previous result on the calculator or first operator
             var selectedOperation = ""; //selected operation before the "=" sign
 
+            //eventListener for clicks on a "special function button"
             function specialPressed(event){
-                var buttonPressed = event.target;
+                var buttonPressed = event.target; //get reference to the button from the event
                 var specialFunction = buttonPressed.value; // we're getting the current operation
                 var actualValue = parseInt(document.getElementById("result").value); //we're getting the actual value
 
@@ -116,19 +117,19 @@
                     case "=": //The users wants the result
                         switch(selectedOperation){ 
                             case "+":
-                                previousResult += actualValue;
+                                previousResult += actualValue; //add
                                 break;
                             case "-":
-                                previousResult -= actualValue;
+                                previousResult -= actualValue; //subtract
                                 break;
                             case "*":
-                                previousResult *= actualValue;
+                                previousResult *= actualValue; //multiply
                                 break;
                             case "/":
-                                previousResult /= actualValue;
+                                previousResult /= actualValue; //divide
                                 break;
                         }
-                        document.getElementById("result").value = previousResult;
+                        document.getElementById("result").value = previousResult; //show the result into the <input id="result"
                         break;
                     case "C": // The user wants to reset
                         document.getElementById("result").value = "0"; //reset the actual value
